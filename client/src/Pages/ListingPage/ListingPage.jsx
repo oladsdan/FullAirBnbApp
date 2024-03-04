@@ -5,6 +5,7 @@ import { useState, useContext } from 'react'
 import { toast } from 'react-toastify'
 import AuthContext from '../../context/AuthProvider'
 import ListingClient from './ListingClient'
+import { Loaders } from '../../components'
 
 const ListingPage = () => {
     const {listingId} = useParams()
@@ -41,7 +42,7 @@ const ListingPage = () => {
 
     if(loading){
         return (
-            <div>....Loading</div>
+            <Loaders />
         )
     }
 

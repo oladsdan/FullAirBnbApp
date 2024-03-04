@@ -145,7 +145,7 @@ const ListingClient = ({listing, currentUser, listingId}) => {
                 <ListingHead
                     title={listing.title}
                     imageSrc={listing.imageSrc}
-                    locationValue={listing.location.value}
+                    locationValue={listing.locationValue}
                     id={listing._id}
                     currentUser={currentUser}
                 />

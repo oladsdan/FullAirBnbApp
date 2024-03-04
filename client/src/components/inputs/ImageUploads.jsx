@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { TbPhotoPlus } from 'react-icons/tb';
-import  { useCallback } from 'react'
 
-import {Cloudinary} from "@cloudinary/url-gen";
+
+// import {Cloudinary} from "@cloudinary/url-gen";
 
 
 
@@ -34,7 +34,6 @@ const ImageUploads = ({value, onChange}) => {
   useEffect(() => {
     
     cloudinaryRef.current = window.cloudinary;
-    console.log(cloudinaryRef)
     // so we store the instance of cloudinary
     if(!cloudinaryRef){
       cloudinaryRef.current = window.cloudinary;

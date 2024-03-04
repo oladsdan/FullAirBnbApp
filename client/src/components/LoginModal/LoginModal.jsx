@@ -29,7 +29,7 @@ const LoginModal = () => {
   //se set state for the user infor.
 
   const {authUser, setAuthUser, openLogin, setOpenLogin} = useContext(AuthContext);
-  // console.log(authUser)
+
 
   // const { register, handleSubmit, formState: {errors,}} = useForm<FieldValues>({
   //   defaultValues: {
@@ -91,7 +91,7 @@ const LoginModal = () => {
       <RegisterInputs 
         id="email"
         label="Email"
-        disabled={isLoading}
+        // disabled={isLoading}
         errors={errors}
         required
         register={register}
@@ -100,7 +100,7 @@ const LoginModal = () => {
         id="password"
         label="password"
         type="password"
-        disabled={isLoading}
+        // disabled={isLoading}
         errors={errors}
         required
         register={register}
@@ -139,7 +139,7 @@ const LoginModal = () => {
     <div>
       {openLogin && loginModal.isOpen &&(
       <Modal 
-        disabled={isLoading}
+        // disabled={isLoading}
         title="Login"
         actionLabel="Continue"
         isOpen={loginModal.isOpen}

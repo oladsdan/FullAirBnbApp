@@ -1,5 +1,4 @@
 import useAxiosPrivate from "./useAxiosPrivate";
-import {useNavigate} from 'react-router-dom';
 import { useCallback, useState, useContext, useMemo } from "react";
 import { toast} from 'react-toastify';
 import useLoginModal from "./useLoginModal";
@@ -8,9 +7,8 @@ import AuthContext from "../context/AuthProvider";
 
 
 const useFavorite = ({listingId, currentUser}) => {
-    const {authUser} = useContext(AuthContext)
+    const {authUser, setOpenLogin} = useContext(AuthContext)
     const axiosPrivate = useAxiosPrivate();
-    const navigate = useNavigate()
     const loginModal = useLoginModal()
     const [hasFavorited, setHasFavorited] = useState(false)
     const message = hasFavorited? "unliked" : "liked";
@@ -29,13 +27,12 @@ const useFavorite = ({listingId, currentUser}) => {
         e.stopPropagation();
 
         if(!currentUser) {
+            setOpenLogin(true)
             return loginModal.onOpen();
         }else{
             try {
                 axiosPrivate.put(`/users/favorite/${listingId}`)
-                .then((response) => {
-                    console.log("this is response")
-                    console.log(response)
+                .then(() => {
                     setHasFavorited(!hasFavorited)
                     toast.success(message)
                 }).catch((error) => {
@@ -52,7 +49,7 @@ const useFavorite = ({listingId, currentUser}) => {
         }
 
        
-    }, [currentUser, hasFavorited, listingId, setHasFavorited])
+    }, [currentUser, hasFavorited, listingId, setHasFavorited, loginModal, axiosPrivate])
 
     return {
         hasFavorited,

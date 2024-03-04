@@ -90,7 +90,7 @@ export const propertyCategories = [
 
 
 const Categories = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
     const category = searchParams?.get('category');
     const location = useLocation();
 

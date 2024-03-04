@@ -3,18 +3,26 @@ import { useContext, useMemo, useState } from "react";
 import AuthContext from "../../context/AuthProvider";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import TripsClient from "./TripsClient";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
  
  const Trips = () => {
     const {authUser, reservationReload} = useContext(AuthContext);
     const axiosPrivate = useAxiosPrivate();
     const [usersReservations, setUsersReservations] = useState([])
+    const navigate = useNavigate()
 
     useMemo(()=> {
       axiosPrivate.get('/api-reservations/userId')
       .then((response) => {
         setUsersReservations(response?.data)
       })
-    }, [authUser, reservationReload])
+      .catch((error) =>{
+        toast.error("Not Authorized Please Login")
+        navigate("/")
+      })
+      // .finally(() => navigate("/"))
+    }, [authUser, reservationReload, axiosPrivate])
   
 
     if(!authUser){

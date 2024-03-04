@@ -9,11 +9,13 @@ import Trips from "./Pages/Trips/trips";
 import ReservationsPage from "./Pages/ReservationsPage/ReservationsPage";
 import FavouritesPage from "./Pages/FavouritesPage/FavouritesPage";
 import PropertiesPage from "./Pages/PropertiesPage/PropertiesPage";
+import SearchModal from "./components/Modals/SearchModal";
 
 
 
 
 axios.defaults.baseURL = "http://localhost:5000";
+// axios.defaults.baseURL = "https://airbnb-api-iota.vercel.app/";
 axios.defaults.withCredentials = true;
 
 function App({children}) {
@@ -27,6 +29,7 @@ function App({children}) {
           <RegisterModal />
           <LoginModal /> 
           <RentModal /> 
+          <SearchModal />
           <Navbar/>
 
           {/* <div className="pb-20 pt-28"> */}

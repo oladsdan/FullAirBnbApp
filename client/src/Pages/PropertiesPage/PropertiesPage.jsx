@@ -3,16 +3,23 @@ import { useContext, useMemo, useState } from "react";
 import AuthContext from "../../context/AuthProvider";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import PropertiesClient from "./PropertiesClient";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
  
  const PropertiesPage = () => {
     const {authUser, reservationReload} = useContext(AuthContext);
     const axiosPrivate = useAxiosPrivate();
     const [usersProperties, setUsersProperties] = useState([])
+    const navigate = useNavigate()
 
     useMemo(()=> {
       axiosPrivate.get('/api-listing/listing-user')
       .then((response) => {
         setUsersProperties(response?.data)
+      })
+      .catch((error) => {
+        toast.error("UnAuthorized, Please Login")
+        navigate("/")
       })
     }, [authUser, reservationReload])
   

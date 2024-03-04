@@ -14,7 +14,7 @@ const ListingCard = ({data, reservation, onAction, disabled, actionLabel, action
   const navigate = useNavigate();
   const {getByValue} = useCountries();
 
-  const location = getByValue(data?.location?.value)
+  const location = getByValue(data?.locationValue)
   
   const handleCancel = useCallback((e) => {
     e.stopPropagation();

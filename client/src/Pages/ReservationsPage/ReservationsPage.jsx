@@ -3,19 +3,27 @@ import { useContext, useMemo, useState } from "react";
 import AuthContext from "../../context/AuthProvider";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import ReservationClient from "./ReservationClient";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
  
 
 const ReservationsPage = () => {
   const {authUser, reservationReload} = useContext(AuthContext);
     const axiosPrivate = useAxiosPrivate();
     const [usersReservations, setUsersReservations] = useState([])
+    const navigate = useNavigate()
 
     useMemo(()=> {
       axiosPrivate.get('/api-reservations/owners')
       .then((response) => {
         setUsersReservations(response?.data)
       })
-    }, [authUser, reservationReload])
+      .catch((error)=> {
+        toast.error("Not authorized, Login")
+        navigate("/")
+      })
+      // .finally(() => navigate("/"))
+    }, [authUser, reservationReload, navigate, axiosPrivate])
   
 
     if(!authUser){

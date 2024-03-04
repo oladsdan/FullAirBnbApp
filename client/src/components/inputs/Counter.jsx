@@ -2,8 +2,6 @@ import React, { useCallback } from 'react'
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 
 const Counter = ({title, subtitle, value, onChange}) => {
-    console.log(value)
-    console.log("in the counter prop")
     const onAdd = useCallback(() => {
         onChange(value + 1)
     }, [onChange, value])

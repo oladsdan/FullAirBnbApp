@@ -7,11 +7,12 @@ import useLoginModal from '../../hooks/useLoginModal';
 import AuthContext from '../../context/AuthProvider';
 import useRentModal from '../../hooks/useRentModal';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 
 const UserMenu = () => {
-    const {authUser, setAuthUser, openLogin, setOpenLogin} = useContext(AuthContext)
-    console.log(authUser)
+    const {authUser, setAuthUser, setOpenLogin} = useContext(AuthContext)
     const navigate = useNavigate();
    
 
@@ -26,19 +27,27 @@ const UserMenu = () => {
     // }, [])
 
     //functions for the MenuItem modal
-    const onClickMenu = (value) => {
-        if (value === "signup"){
-            /* eslint-disable */
-            registerModal.onOpen()
-        }
+    // const onClickMenu = (value) => {
+    //     if (value === "signup"){
+    //         /* eslint-disable */
+    //         registerModal.onOpen()
+    //     }
 
-    }
+    // }
     const handleLogout = () => {
-        setAuthUser('')
+        axios.get('/api/logout')
+        .then(()=>{
+            setAuthUser('')
+            toast.success("Logged out SuccessFully")
+            navigate("/")
+        })
+        .catch((error) => {
+            toast.error("Something went Wrong")
+        })
     }
-    const handleLogin =() => {
-        setOpenLogin(true)
-    }
+    // const handleLogin =() => {
+    //     setOpenLogin(true)
+    // }
 
     // we use this as a form of authentication is the user is not signed in at the airbnb your home
     const onRent = useCallback(() =>{
@@ -48,7 +57,7 @@ const UserMenu = () => {
         }
         //else open rent modal
         rentModal.onOpen()
-    }, [authUser, loginModal, rentModal])
+    }, [authUser, loginModal, rentModal, setOpenLogin])
 
   return ( 
     <div className='relative'>
@@ -89,7 +98,7 @@ const UserMenu = () => {
                     ): (
 
                         <>
-                            <MenuItem onClickMenu={loginModal.onOpen} setIsOpen={setIsOpen} setOpenLogin={setOpenLogin(true)} label="Login"/>
+                            <MenuItem onClickMenu={loginModal.onOpen} setIsOpen={setIsOpen} setOpenLogin={setOpenLogin} label="Login"/>
                             <MenuItem  onClickMenu={registerModal.onOpen} setIsOpen={setIsOpen}   label="Sign up"/>
                         </>
                     )}

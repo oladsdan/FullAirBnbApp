@@ -4,7 +4,10 @@ const MenuItem = ({onClickMenu, label, setIsOpen, setOpenLogin}) => {
      const handleMenuItem =() => {
         onClickMenu();
         setIsOpen(false)
-        // setOpenLogin()
+        if(label === "Login"){
+
+          setOpenLogin(true)
+        }
 
     }
 

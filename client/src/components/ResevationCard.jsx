@@ -9,7 +9,7 @@ const ReservationCard =({reservation, deletingId, currentUser, onCancel}) => {
         const location = useLocation();
 
         const ReserveActionLabel = location?.pathname === '/trips'? "Cancel Reservation" : "Cancel guest Reservation"
-        // console.log(reservationResponse)
+        
 
         useEffect(()=> {
           axios.get(`/api-listing/listing/${reservation.listingId}`)

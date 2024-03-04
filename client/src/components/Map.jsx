@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo } from 'react'
-import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet'
+import React from 'react'
+import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import L from 'leaflet'
 import "leaflet/dist/leaflet.css";
 import markerIcon2x  from  'leaflet/dist/images/marker-icon-2x.png'
@@ -37,7 +37,6 @@ const Map = ({center}) => {
 
 
 // const Map = ({center}) => {
-//   console.log(center)
 //   const displayMap = useMemo(
 //     () => (
 //       <MapContainer
@@ -64,8 +63,7 @@ const Map = ({center}) => {
 
 // const Map =({center}) => {
 //   const displayMaps = useEffect(() => {
-//     console.log("it rendered")
-//     console.log(center)
+//  
 //     const displayMap =() => {(
 //         <MapContainer
 //           center={center}

@@ -3,10 +3,13 @@ import EmptyState from '../../components/EmptyState'
 import useAxiosPrivate from '../../hooks/useAxiosPrivate'
 import AuthContext from '../../context/AuthProvider'
 import FavoritesClient from './FavoritesClient'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const FavouritesPage = () => {
   //we get the currentUser
   const {authUser} = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const axiosPrivate = useAxiosPrivate();
   const [myFav, setMyFav] = useState("");
@@ -19,8 +22,10 @@ const FavouritesPage = () => {
       setMyFav(response.data)
     })
     .catch((error) => {
-      console.error(error)
+      toast.error("UnAuthorized kindly login")
+      navigate("/")
     })
+
   }, [])
 
 
