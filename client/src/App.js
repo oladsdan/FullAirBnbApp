@@ -14,7 +14,8 @@ import SearchModal from "./components/Modals/SearchModal";
 
 
 
-axios.defaults.baseURL = "http://localhost:5000";
+// axios.defaults.baseURL = "http://localhost:5000";
+axios.defaults.baseURL = "https://fullairbnb-api.vercel.app";
 // axios.defaults.baseURL = "https://airbnb-api-iota.vercel.app/";
 axios.defaults.withCredentials = true;
 
