@@ -25,6 +25,7 @@ export const CreateListing = async (req, res) => {
 }
 
 export const GetAllListing = async (req, res) => {
+    res.set('Cache-Control', 'max-age=3600, must-revalidate');
     
     try {
         const queryObj = {...req.query};
